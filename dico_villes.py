@@ -687,3 +687,36 @@ def reponse_exo_9(dico_villes, dico_departements, dico_regions, code_region):
         if (code_departement_ville in liste_codes_departements):
             liste_population_villes.append(population_ville)
     return sum(liste_population_villes)
+
+def reponse_exo_10(dico_villes, code_departement):
+    ville_recherchee = None
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if code_departement_ville == code_departement:
+            if ville_recherchee == None:
+                ville_recherchee = (nom_ville, population_ville)
+            else:
+                ville_precedente_nom, ville_precedente_population = ville_recherchee
+                if ville_precedente_population < population_ville:
+                    ville_recherchee = (nom_ville, population_ville)
+    return ville_recherchee
+
+def reponse_exo_11(dico_villes, dico_departements, dico_regions, code_region):
+    liste_codes_departements = []
+    for code_departement, donnees_departement in dico_departements.items():
+        nom_departement_courant, code_region_courant = donnees_departement
+        if code_region_courant == code_region:
+            liste_codes_departements.append(code_departement)
+
+    ville_recherchee = None
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if (code_departement_ville in liste_codes_departements):
+            if ville_recherchee == None:
+                ville_recherchee = (nom_ville, population_ville)
+            else:
+                ville_precedente_nom, ville_precedente_population = ville_recherchee
+                if ville_precedente_population < population_ville:
+                    ville_recherchee = (nom_ville, population_ville)
+
+    return ville_recherchee
