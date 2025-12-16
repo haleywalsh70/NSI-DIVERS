@@ -485,15 +485,15 @@ dico_villes = {
 
 dico_departements = {
     # code_departement: (nom_departement, code_region)
-    '1': ('AIN', 84),
-    '2': ('AISNE', 32),
-    '3': ('ALLIER', 84),
-    '4': ('ALPES-DE-HAUTE-PROVENCE', 93),
-    '5': ('HAUTES-ALPES', 93),
-    '6': ('ALPES-MARITIMES', 93),
-    '7': ('ARDECHE', 84),
-    '8': ('ARDENNES', 44),
-    '9': ('ARIEGE', 76),
+    '01': ('AIN', 84),
+    '02': ('AISNE', 32),
+    '03': ('ALLIER', 84),
+    '04': ('ALPES-DE-HAUTE-PROVENCE', 93),
+    '05': ('HAUTES-ALPES', 93),
+    '06': ('ALPES-MARITIMES', 93),
+    '07': ('ARDECHE', 84),
+    '08': ('ARDENNES', 44),
+    '09': ('ARIEGE', 76),
     '10': ('AUBE', 44),
     '11': ('AUDE', 76),
     '12': ('AVEYRON', 76),
@@ -720,3 +720,21 @@ def reponse_exo_11(dico_villes, dico_departements, dico_regions, code_region):
                     ville_recherchee = (nom_ville, population_ville)
 
     return ville_recherchee
+
+def reponse_exo_12(dico_villes, dico_departements):
+    liste_departements = []
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if altitude_ville >= 250 and (dico_departements[code_departement_ville][0]) not in liste_departements:
+            liste_departements.append(dico_departements[code_departement_ville][0])
+
+    return liste_departements
+
+def reponse_exo_13(dico_villes, dico_departements, dico_regions):
+    liste_regions = []
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if altitude_ville >= 250 and (dico_departements[code_departement_ville][1]) not in liste_regions:
+            liste_regions.append(dico_departements[code_departement_ville][1])
+
+    return [v for k, v in dico_regions.items() if k in liste_regions]
