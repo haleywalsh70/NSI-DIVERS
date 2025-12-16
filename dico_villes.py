@@ -630,7 +630,6 @@ def reponse_exo_4(dico_villes, code_departement):
             liste_villes.append(nom_ville)
     return liste_villes
 
-
 def reponse_exo_5(dico_villes, dico_departements, dico_regions, code_region):
     liste_codes_departements = []
     for code_departement, donnees_departement in dico_departements.items():
@@ -644,3 +643,33 @@ def reponse_exo_5(dico_villes, dico_departements, dico_regions, code_region):
         if code_departement_ville in liste_codes_departements:
             liste_villes.append(nom_ville)
     return liste_villes
+
+def reponse_exo_6(dico_villes, code_departement):
+    liste_villes = []
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if code_departement_ville == code_departement and population_ville >= 50000:
+            liste_villes.append(nom_ville)
+    return liste_villes
+
+def reponse_exo_7(dico_villes, dico_departements, dico_regions, code_region):
+    liste_codes_departements = []
+    for code_departement, donnees_departement in dico_departements.items():
+        nom_departement_courant, code_region_courant = donnees_departement
+        if code_region_courant == code_region:
+            liste_codes_departements.append(code_departement)
+
+    liste_villes = []
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if (code_departement_ville in liste_codes_departements) and (population_ville >= 50000):
+            liste_villes.append(nom_ville)
+    return liste_villes
+
+def reponse_exo_8(dico_villes, code_departement):
+    liste_population_villes = []
+    for nom_ville, donnees_villes in dico_villes.items():
+        code_departement_ville, population_ville, altitude_ville = donnees_villes
+        if code_departement_ville == code_departement:
+            liste_population_villes.append(population_ville)
+    return sum(liste_population_villes)
